@@ -27,10 +27,6 @@ function extractHeadingsFromJSX(code: string) {
 }
 
 
-// export async function generateStaticParams() {
-//   return posts.map((post) => ({ slug: post.slugAsParams.split("/") }));
-// }
-
 const SinglePost = async ({ params }: { params: { slug: string[] } }) => {
   const data = await getPostsFromParams(params.slug.join("/"));
 
@@ -54,7 +50,7 @@ const SinglePost = async ({ params }: { params: { slug: string[] } }) => {
         <div className="w-[250px] hidden sm:block">
          
         </div>
-        <main className="prose-sm sm:prose w-full sm:flex-1 sm:max-w-none dark:prose-invert">
+        <main className="prose w-full sm:flex-1 sm:max-w-none dark:prose-invert">
           <MDXContent code={data.body} />
         </main>
         <div className="w-[250px] hidden sm:block">

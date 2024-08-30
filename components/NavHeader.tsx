@@ -13,7 +13,7 @@ const NavHeader = () => {
     <MaxWidthContainer className="py-8 flex justify-between">
       <div>
         <Link href={"/"}>
-          <Image src="/logo-slashritesh.svg" width={90} height={90} className="w-auto" alt="slash ritesh logo" />
+          <Image src="/logo-slashritesh.svg" width={80} height={80} className="w-auto" alt="slash ritesh logo" />
         </Link>
       </div>
       <div className="hidden sm:flex gap-5">
