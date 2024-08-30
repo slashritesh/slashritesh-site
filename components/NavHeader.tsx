@@ -2,7 +2,6 @@ import React from "react";
 import MaxWidthContainer from "./MaxWidthContainer";
 import Image from "next/image";
 import Link from "next/link";
-import logo from "@/public/static/logo-slashritesh.svg";
 import { Button, buttonVariants } from "./ui/button";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
@@ -14,7 +13,7 @@ const NavHeader = () => {
     <MaxWidthContainer className="py-8 flex justify-between">
       <div>
         <Link href={"/"}>
-          <Image src={logo} width={90} height={90} alt="slash ritesh logo" />
+          <Image src="/logo-slashritesh.svg" width={90} height={90} className="w-auto" alt="slash ritesh logo" />
         </Link>
       </div>
       <div className="hidden sm:flex gap-5">
