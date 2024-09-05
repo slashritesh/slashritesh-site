@@ -22,9 +22,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn("antialiased min-h-screen", poppins.className)}>
-        <div className="min-h-dvh bg-background flex flex-col">
-          <main className="flex-1">
+      <body className={cn(" min-h-screen", poppins.className)}>
+        <div className="min-h-dvh relative bg-background flex flex-col">
+
+          {/* // background radical blue */}
+          <div className="absolute z-[1] opacity-45 top-0 left-0 h-full w-full px-5 py-24 [background:radial-gradient(226%_125%_at_20%_100%,#000_40%,#63e_100%)]"></div>
+
+          {/* // background grid */}
+          <div className="absolute z-[8] bottom-0 left-0 right-0 top-0 opacity-[0.09] bg-[linear-gradient(to_right,#ffff_1px,transparent_1px),linear-gradient(to_bottom,#ffff_1px,transparent_1px)] bg-[size:6rem_6rem] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+
+          <main className="flex-1 z-10">
             <ThemeProvider
               attribute="class"
               defaultTheme="dark"

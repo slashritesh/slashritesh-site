@@ -18,6 +18,7 @@ const posts = defineCollection({
     pattern : "blog/**/*.mdx",
     schema : s.object({
         slug : s.path(),
+        headimage : s.path(),
         title : s.string(),
         description : s.string().optional(),
         date : s.isodate(),

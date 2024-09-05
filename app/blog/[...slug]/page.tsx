@@ -38,7 +38,7 @@ const SinglePost = async ({ params }: { params: { slug: string[] } }) => {
 
   return (
     <main>
-      <div className="bg-blue-950 flex flex-col items-center p-10 sm:p-16 justify-center bg-opacity-30">
+      <div className="bg-black flex flex-col items-center p-10 sm:p-16 justify-center bg-opacity-30">
         <p className="mb-5 text-sm p-2 px-5 rounded-full bg-white border-muted-foreground bg-opacity-10">
           {formatDate(data.date)}
         </p>
