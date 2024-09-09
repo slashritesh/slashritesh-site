@@ -13,6 +13,18 @@ const computedFeilds = <T extends {slug : string}>(data : T)=>(
     }
 )
 
+
+export interface Post {
+    slug: string;
+    headimage: string;
+    title: string;
+    description?: string;
+    date: string; // ISO Date
+    published?: boolean;
+    body: string;
+    slugAsParams: string; // Computed field
+}
+
 const posts = defineCollection({
     name : "Posts",
     pattern : "blog/**/*.mdx",

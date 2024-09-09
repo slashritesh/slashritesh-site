@@ -4,7 +4,9 @@ import { notFound } from "next/navigation";
 import { formatDate } from "@/lib/utils";
 import MaxWidthContainer from "@/components/MaxWidthContainer";
 import { MDXContent } from "@/components/mdx-component";
-import "@/styles/mdx.css"
+import "@/styles/mdx.css";
+import { Post } from "@/velite.config";
+import Link from "next/link";
 
 async function getPostsFromParams(params: string) {
   const post = posts.find((i) => i.slugAsParams === params);
@@ -12,7 +14,8 @@ async function getPostsFromParams(params: string) {
 }
 
 function extractHeadingsFromJSX(code: string) {
-  const headingRegex = /e\(r\.(h[2-4]),\s*\{\s*id:\s*"([^"]*)",\s*children:\s*"([^"]*)"\s*\}\)/g;
+  const headingRegex =
+    /e\(r\.(h[2-4]),\s*\{\s*id:\s*"([^"]*)",\s*children:\s*"([^"]*)"\s*\}\)/g;
   const headings = [];
 
   let match;
@@ -26,12 +29,9 @@ function extractHeadingsFromJSX(code: string) {
   return headings;
 }
 
-
 const SinglePost = async ({ params }: { params: { slug: string[] } }) => {
   const data = await getPostsFromParams(params.slug.join("/"));
 
-  const headings = extractHeadingsFromJSX(data?.body.toString()!)
-  
   if (!data?.published || !data) {
     notFound();
   }
@@ -46,20 +46,38 @@ const SinglePost = async ({ params }: { params: { slug: string[] } }) => {
           {data.title}
         </h1>
       </div>
-      <div className="mx-8 sm:mx-20 justify-center flex gap-8 py-10">
-        <div className="w-[250px] hidden sm:block">
-         
-        </div>
-        <main className="prose w-full sm:flex-1 sm:max-w-none dark:prose-invert">
+      <MaxWidthContainer className="flex sm:px-32 gap-10 py-10">
+        <TableofContent data={data} />
+        <main className="prose w-full sm:flex-1 dark:prose-invert">
           <MDXContent code={data.body} />
         </main>
-        <div className="w-[250px] hidden sm:block">
-          <p className="text-sm pb-5 mb-5 border-b">Table Of Content</p>
-          <div className="flex gap-5 flex-col">{headings.map((post,index)=><li key={index} className="list-none w-fit">{post.text}</li>)}</div>
-        </div>
-      </div>
+      </MaxWidthContainer>
     </main>
   );
 };
 
 export default SinglePost;
+
+const TableofContent = ({ data }: { data: Post }) => {
+  const headings = extractHeadingsFromJSX(data?.body.toString()!);
+
+  return (
+    <>
+      <div className="w-[250px] hidden sm:block">
+        <p className="text-sm pb-5 mb-5 border-b">Table Of Content</p>
+        <div className="flex gap-5 flex-col">
+          {headings.map((post, index) => {
+            const slug = "#" + post.text.toLowerCase().replace(/\s+/g, '-')
+            return (
+              <div key={index}>
+                <Link  href={slug}>
+                  {post.text}
+                </Link>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </>
+  );
+};
