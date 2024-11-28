@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} overflow-x-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable}`}
       >
         <ThemeProvider
             attribute="class"
